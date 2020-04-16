@@ -1,5 +1,5 @@
-#while¹®°ú repeat¹®¿¡¼­ if¹®À» »ç¿ëÇÏ´Â ¹ı 
-#±¸±¸´Ü ¸Å¼­µå 
+#whileë¬¸ê³¼ repeatë¬¸ì—ì„œ ifë¬¸ì„ ì‚¬ìš©í•˜ëŠ” ë²• 
+#êµ¬êµ¬ë‹¨ ë§¤ì„œë“œ 
 number = 1:9
 mat = matrix(0, nrow = length(number), ncol = length(number))
 i <- j <- 1
@@ -7,7 +7,7 @@ cond1 <- cond2 <- TRUE
 while(cond1) {
   while(cond2) {
     mat[i, j] <- number[i] * number[j]
-    j <- j + 1 #±¸±¸´Ü 1´Ü ±¸¼º 
+    j <- j + 1 #êµ¬êµ¬ë‹¨ 1ë‹¨ êµ¬ì„± 
     if (j >length(number)) { 
       cond2 <- FALSE
     }
@@ -30,10 +30,10 @@ while(TRUE){
     mat[i, j] <- number[i] * number[j]
     j <- j + 1
     if (j > length(number)) {
-      break #cond2 <- FALSE´ë½Å »ç¿ë
+      break #cond2 <- FALSEëŒ€ì‹  ì‚¬ìš©
     }
   }
-  i = i + 1; j <- 1 #±¸±¸´Ü 2´ÜºÎÅÍ 9´Ü±îÁö ÀÛ¾÷
+  i = i + 1; j <- 1 #êµ¬êµ¬ë‹¨ 2ë‹¨ë¶€í„° 9ë‹¨ê¹Œì§€ ì‘ì—…
   if (i > length(number)) {
     break
   }
@@ -43,7 +43,7 @@ mat
 number = 1:9
 mat = matrix(0, nrow = length(number), ncol = length(number))
 i <- j <- 1
-repeat{ #while¹®¿¡ Ç×»ó TRUE°ªÀ» ³Ö¾îÁØ °á°ú
+repeat{ #whileë¬¸ì— í•­ìƒ TRUEê°’ì„ ë„£ì–´ì¤€ ê²°ê³¼
   repeat{
     mat[i, j] <- number[i] * number[j]
     j <- j + 1
@@ -63,7 +63,7 @@ score <- c(70, 55, 88, 30)
 achv <- ifelse(score >= 70, "A", "B") 
 achv
 
-#ifelse() functionÀ» if, for statement¸¦ »ç¿ëÇÏ¿© ³ªÅ¸³»±â 
+#ifelse() functionì„ if, for statementë¥¼ ì‚¬ìš©í•˜ì—¬ ë‚˜íƒ€ë‚´ê¸° 
 score <- c(70, 55, 88, 30)
 achv <- c()
 for (i in 1:length(score)) {
@@ -75,7 +75,7 @@ for (i in 1:length(score)) {
 }
 achv
 
-#ifelse() functionÀ» 2¹ø ÀÌ»ó »ç¿ëÇÏ´Â °æ¿ì
+#ifelse() functionì„ 2ë²ˆ ì´ìƒ ì‚¬ìš©í•˜ëŠ” ê²½ìš°
 score <- c(70, 55, 88, 30)
 achv <- ifelse(score >= 70, "A", 
                ifelse(score >= 50, "B", "C"))
@@ -94,7 +94,7 @@ switch(name,
        Sangjun = "Nice",
        Sion = "stupid")
 
-#¾ß±¸°ÔÀÓ
+#ì•¼êµ¬ê²Œì„
 correct <- c(3, 5, 2)
 ask <- c(9, 3, 1)
 strike = 0
@@ -102,9 +102,9 @@ ball = 0
 for (i in 1:length(correct)) {
   for (j in 1:length(correct)) {
     if ((correct[i] == ask[j]) & (i == j)) {
-      strike <- strike + 1 #°ªµµ °°°í À§Ä¡µµ °°Àº °æ¿ì 
+      strike <- strike + 1 #ê°’ë„ ê°™ê³  ìœ„ì¹˜ë„ ê°™ì€ ê²½ìš° 
     }
-    if ((correct[i] == ask[j]) & (i != j)) { #°ªÀº °°Àºµ¥ À§Ä¡°¡ ´Ù¸¥ °æ¿ì 
+    if ((correct[i] == ask[j]) & (i != j)) { #ê°’ì€ ê°™ì€ë° ìœ„ì¹˜ê°€ ë‹¤ë¥¸ ê²½ìš° 
       ball <- ball + 1
     }
   }
@@ -113,15 +113,15 @@ for (i in 1:length(correct)) {
 if ((strike + ball) == 0) {
   answer = "out"
 } else {
-  answer = paste(strike, "strike", ball, "ball") #¹®ÀÚ¿­ ÃëÇÕ
+  answer = paste(strike, "strike", ball, "ball") #ë¬¸ìì—´ ì·¨í•©
 }
 
 answer
 
 cororect <-c (3, 5, 2)
 ask <- c(3, 2, 1)
-strike = sum(correct == ask) #elementwise·Î ºñ±³ #T = 1, F = 0À¸·Î °è»ê
-ball = sum(correct %in% ask) - strike #correctÀÇ °ªÀÌ ask¿¡ ÀÖ´Â Áö 
+strike = sum(correct == ask) #elementwiseë¡œ ë¹„êµ #T = 1, F = 0ìœ¼ë¡œ ê³„ì‚°
+ball = sum(correct %in% ask) - strike #correctì˜ ê°’ì´ askì— ìˆëŠ” ì§€ 
 if ((strike + ball) == 0) {
   answer = "out"
 } else {
@@ -130,7 +130,7 @@ if ((strike + ball) == 0) {
 
 answer
 
-#ÀÔ·Â°ª¿¡ ´ëÇØ ¹Ù·Î ¹İÈ¯ÇØÁÖ´Â ÄÚµå 
+#ì…ë ¥ê°’ì— ëŒ€í•´ ë°”ë¡œ ë°˜í™˜í•´ì£¼ëŠ” ì½”ë“œ 
 cond = TRUE
 while(cond) {
   input = readline("Input your number : ")
@@ -151,11 +151,11 @@ while(cond) {
 
 ?strsplit
 
-#°è´Ü¿À¸£±â #°úÁ¦ 
-x = c("°¡À§", "¹ÙÀ§", "º¸")
+#ê³„ë‹¨ì˜¤ë¥´ê¸° #ê³¼ì œ 
+x = c("ê°€ìœ„", "ë°”ìœ„", "ë³´")
 mat = matrix(0, nrow = length(x), ncol = length(x), 
-             dimnames = list(x, x)) #ºó Çà·Ä »ı¼º
-#¿µÈñ°¡ ÀÌ±â¸é 1, Ã¶¼ö°¡ ÀÌ±â¸é -1, ºñ±â¸é 0
+             dimnames = list(x, x)) #ë¹ˆ í–‰ë ¬ ìƒì„±
+#ì˜í¬ê°€ ì´ê¸°ë©´ 1, ì² ìˆ˜ê°€ ì´ê¸°ë©´ -1, ë¹„ê¸°ë©´ 0
 mat[, 1] = c(0, -1, 1)
 mat[, 2] = c(1, 0, -1)
 mat[, 3] = c(-1, 1, 0)
@@ -165,7 +165,7 @@ result_mat = matrix(nrow = iter, ncol = 3)
 result_mat
 
 for (j in 1:iter) {
-  winner = rep(0, 20) #20¹øÀÇ °¡À§¹ÙÀ§º¸ 
+  winner = rep(0, 20) #20ë²ˆì˜ ê°€ìœ„ë°”ìœ„ë³´ 
   for (i in 1:20) {
     chul = sample(x, size = 1, prob = c(0.1, 0.7, 0.2))
     young = sample(x, size = 1, prob = c(0.2, 0.3, 0.5))
@@ -174,15 +174,15 @@ for (j in 1:iter) {
                        "1" ="young",
                        "0" = "none")
   }
-  #factor ¸Ş¼­µå¸¦ »ç¿ëÇØ ºó ¿­ÀÌ ¾øµµ·Ï ¸¸µé¾îÁÜ 
+  #factor ë©”ì„œë“œë¥¼ ì‚¬ìš©í•´ ë¹ˆ ì—´ì´ ì—†ë„ë¡ ë§Œë“¤ì–´ì¤Œ 
   result_mat[j, ] = table(factor(winner, 
                                  level = c("young", "none", "chul")))
 }
 
-colMeans(result_mat) #¿­º° Æò±Õ 
+colMeans(result_mat) #ì—´ë³„ í‰ê·  
 result_mat
 
-#ÀÌ±ä È½¼ö * 2 - Áø È½¼ö 
+#ì´ê¸´ íšŸìˆ˜ * 2 - ì§„ íšŸìˆ˜ 
 young_new <- result_mat[, 1] * 2 - result_mat[, 3]
 chul_new <- result_mat[, 3] * 2 - result_mat[, 1]
 none_new <- result_mat[, 2]
