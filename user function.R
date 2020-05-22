@@ -1,4 +1,4 @@
-#Exercise 1 ¸®ºä-----------------------
+#Exercise 1 ë¦¬ë·°-----------------------
 fibonacci = function(n) {
   if (n == 0) {
     result = 0
@@ -18,14 +18,14 @@ fibonacci = function(n) {
 fibonacci(10)
 rm(fibonacci)
 
-#Exercise 2 ¸®ºä-------------------
+#Exercise 2 ë¦¬ë·°-------------------
 
-# ÀÌ »óÅÂ¿¡¼­ »¬¼ÀÀº element-wise·Î #ºê·ÎµåÄ³½ºÆÃ°ú °°Àº °³³ä
+# ì´ ìƒíƒœì—ì„œ ëº„ì…ˆì€ element-wiseë¡œ #ë¸Œë¡œë“œìºìŠ¤íŒ…ê³¼ ê°™ì€ ê°œë…
 # X[2, ] - X_new[1, ]
 # X]3. ] - X_new[1, ]
-# X[4, ] - X_new[1, ]... À» ´ëÃ¼
+# X[4, ] - X_new[1, ]... ì„ ëŒ€ì²´
 
-X - X_new[1, ] #R¿¡¼­´Â Â÷¿øÀ» ÅëÀÏ½ÃÄÑÁÖÁö ¾ÊÀ¸¸é ±âº»ÀûÀ¸·Î 4°³¾¿ °è»ê
+X - X_new[1, ] #Rì—ì„œëŠ” ì°¨ì›ì„ í†µì¼ì‹œì¼œì£¼ì§€ ì•Šìœ¼ë©´ ê¸°ë³¸ì ìœ¼ë¡œ 4ê°œì”© ê³„ì‚°
 
 set.seed(1)
 ind = sample(1:nrow(iris), size = 0.7 * nrow(iris))
@@ -37,8 +37,8 @@ y_true = iris[-ind, 5]
 
 
 knn = function(X, y, X_new, k) {
-  X = as.matrix(X) #°¢°¢ÀÌ Çà·Ä·Î µé¾î¿Ã ¼öµµ ÀÖÀ¸¹Ç·Î
-  X_new = as.matrix(X_new) #ÀÏ¹İÀûÀÎ ÇÔ¼ö·Î ¸¸µé¾îÁÜ
+  X = as.matrix(X) #ê°ê°ì´ í–‰ë ¬ë¡œ ë“¤ì–´ì˜¬ ìˆ˜ë„ ìˆìœ¼ë¯€ë¡œ
+  X_new = as.matrix(X_new) #ì¼ë°˜ì ì¸ í•¨ìˆ˜ë¡œ ë§Œë“¤ì–´ì¤Œ
   type = class(y)
   pred_y = c()
   for (i in 1:nrow(X_new)) {
@@ -55,9 +55,9 @@ knn = function(X, y, X_new, k) {
 knn(X, y, X_new, 3)
 knn(X, y, X_new, 4)
 
-#¾Ë°í¸®Áò ¼º´É Æò°¡ 
+#ì•Œê³ ë¦¬ì¦˜ ì„±ëŠ¥ í‰ê°€ 
 pred_y = knn(X, y, X_new, 1)
-table(y_true, pred_y) #³ª¸ÓÁö -ind¸¦ Åä´ë·Î Æò°¡
+table(y_true, pred_y) #ë‚˜ë¨¸ì§€ -indë¥¼ í† ëŒ€ë¡œ í‰ê°€
 
 pred_Y = knn(X, y, X_new, 3)
 table(y_true, pred_y)
@@ -79,29 +79,29 @@ my_kmeans = function(X, centers, maxiter) {
   
   center_mat = matrix(0, nrow = centers, ncol = ncol(X))
   
-  #for ¹®À¸·Î ´ëÃ¼ 
+  #for ë¬¸ìœ¼ë¡œ ëŒ€ì²´ 
   for (i in 1:centers) {
     center_mat[i, ] = colMeans(X[cluster == i, ])
   }
   
-  #´Ù½Ã Áß½É°ú µ¥ÀÌÅÍ°£ÀÇ À¯Å¬¸®µğ¾È °Å¸® °è»ê
+  #ë‹¤ì‹œ ì¤‘ì‹¬ê³¼ ë°ì´í„°ê°„ì˜ ìœ í´ë¦¬ë””ì•ˆ ê±°ë¦¬ ê³„ì‚°
   
   euclid_mat = function(x, y) {
-    #x, yÀÚ¸®¿¡´Â °¢°¢ Çà·Ä°ú º¤ÅÍ°¡ µé¾î°¥ °ÍÀÓ
-    return(sqrt(colSums((x - y)^2))) #¹İÈ¯°ªÀº Çà·ÄÀÌ µÊ
+    #x, yìë¦¬ì—ëŠ” ê°ê° í–‰ë ¬ê³¼ ë²¡í„°ê°€ ë“¤ì–´ê°ˆ ê²ƒì„
+    return(sqrt(colSums((x - y)^2))) #ë°˜í™˜ê°’ì€ í–‰ë ¬ì´ ë¨
   }
   
   
-  for(j in 1:maxiter) { #±×·ìÈ­ ¹İº¹
-    dist = matrix(0, nrow = nrow(X), ncol = centers) #ÀúÀåÇÏ±â À§ÇÑ º¯¼ö
+  for(j in 1:maxiter) { #ê·¸ë£¹í™” ë°˜ë³µ
+    dist = matrix(0, nrow = nrow(X), ncol = centers) #ì €ì¥í•˜ê¸° ìœ„í•œ ë³€ìˆ˜
     
     for (i in 1:centers) {
-      dist[, i] = euclid_mat(t(X), center_mat[i, ]) #t()´Â ¿­°ú ÇàÀ» transpose
+      dist[, i] = euclid_mat(t(X), center_mat[i, ]) #t()ëŠ” ì—´ê³¼ í–‰ì„ transpose
     } 
     
-    #Áß½É¿¡ µû¶ó »õ·Î ¹èÁ¤ÇØÁØ cluster
-    cluster = apply(dist, 1, which.min) #1Àº Çàº° °è»ê
-    #À¯Å¬¸®µğ¾È °Å¸®°¡ °¡Àå ÀÛÀº ±×·ìÀ¸·Î ¹èÁ¤ÇØÁÖ´Â °Í
+    #ì¤‘ì‹¬ì— ë”°ë¼ ìƒˆë¡œ ë°°ì •í•´ì¤€ cluster
+    cluster = apply(dist, 1, which.min) #1ì€ í–‰ë³„ ê³„ì‚°
+    #ìœ í´ë¦¬ë””ì•ˆ ê±°ë¦¬ê°€ ê°€ì¥ ì‘ì€ ê·¸ë£¹ìœ¼ë¡œ ë°°ì •í•´ì£¼ëŠ” ê²ƒ
     
     for (i in 1:centers) {
       center_mat[i, ] = colMeans(X[cluster == i, ])
@@ -110,12 +110,12 @@ my_kmeans = function(X, centers, maxiter) {
   return(cluster)
 }
 
-#Áß½ÉÀÌ º¯ÇÏÁö ¾ÊÀ¸¸é ¸ØÃß´Â Á¶°Ç Ãß°¡ÇÒ ¼ö ÀÖÀ½
+#ì¤‘ì‹¬ì´ ë³€í•˜ì§€ ì•Šìœ¼ë©´ ë©ˆì¶”ëŠ” ì¡°ê±´ ì¶”ê°€í•  ìˆ˜ ìˆìŒ
 
-#10¹ø ±×·ìÈ­ ÇßÀ» ¶§ ¹èÁ¤µÈ ±×·ì
+#10ë²ˆ ê·¸ë£¹í™” í–ˆì„ ë•Œ ë°°ì •ëœ ê·¸ë£¹
 my_kmeans(X, center = 3, maxiter = 10)
 
 group = my_kmeans(X, centers = 3, maxiter =10)
 
-cbind(X, group) #¿­³¢¸® ¹­¾îÁÜ
-rbind(X, c(1, 2, 3, 4)) #Çà³¢¸® ¹­¾îÁÜ
+cbind(X, group) #ì—´ë¼ë¦¬ ë¬¶ì–´ì¤Œ
+rbind(X, c(1, 2, 3, 4)) #í–‰ë¼ë¦¬ ë¬¶ì–´ì¤Œ
