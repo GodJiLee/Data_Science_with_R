@@ -1,0 +1,76 @@
+require(reshape2)
+require(mice)
+require(VIM)
+require(ggplot2)
+require(dplyr)
+
+setwd("C:\\Users\\leejiwon\\Desktop\\기초프로그래밍 13주차")
+
+# 과제[1]---------------------------------------------------------------------------------
+facebook1 = read.csv(file = "facebook1.csv", header = TRUE)
+facebook2 = read.csv(file = "facebook2.csv", header = TRUE)
+
+facebook_total = cbind(facebook1, facebook2[4:6])
+sum(is.na(facebook_total))
+str(facebook_total)
+
+# 결측치가 전체 데이터에 비해 소수이므로 제거하는 방법을 택했다.
+facebook_total_clear = facebook_total[complete.cases(facebook_total),]
+sum(is.na(facebook_total_clear))
+
+facebook_total_s = facebook_total_clear %>% group_by(Type) %>% summarise(Comment = mean(Comment),
+                                                                         Like = mean(Like),
+                                                                         Share = mean(Share))
+
+facebook_total_s_melt = melt(facebook_total_s, id.vars = "Type", measure.vars = 2:4)
+
+ggplot(facebook_total_s_melt, 
+       aes(x = Type, y = value, fill = variable)) +
+  geom_bar(stat = "identity", position = "dodge") +
+  xlab("게시물 종류") + ylab("평균") +
+  ggtitle("평균 댓글, 좋아요, 공유 수") +
+  scale_fill_discrete(name = "분류",
+                      labels = c("댓글", "좋아요", "공유"))
+
+# 과제[2]---------------------------------------------------------------------------------
+type_vs_paid_like = facebook_total_clear %>% 
+  reshape2::dcast(., Type ~ Paid, 
+                  value.var = "Like",
+                  fun.aggregate = mean)
+
+type_vs_paid_comment = facebook_total_clear %>% 
+  reshape2::dcast(., Type ~ Paid,
+                  value.var = "Comment",
+                  fun.aggregate = mean)
+
+type_vs_paid_share = facebook_total_clear %>% 
+  reshape2::dcast(., Type ~ Paid,
+                  value.var = "Share",
+                  fun.aggregate = mean)
+
+like_melt = melt(type_vs_paid_like, id.vars = "Type", measure.vars = 2:3)
+comment_melt = melt(type_vs_paid_comment, id.vars = "Type", measure.vars = 2:3)
+share_melt = melt(type_vs_paid_share, id.vars = "Type", measure.vars = 2:3)
+
+melting_data = rbind(like_melt, comment_melt, share_melt)
+
+for (i in 1: nrow(melting_data)) {
+  if(as.integer(rownames(melting_data[i, ])) <= nrow(like_melt)){
+    melting_data$group[i] <- "Like"
+  } else if(as.integer(rownames(melting_data[i, ])) <= nrow(like_melt) * 2){
+    melting_data$group[i] <- "Commnet"
+  } else{
+    melting_data$group[i] <- "Share"
+  }
+}
+
+ggplot(melting_data,
+       aes(variable, value, group = Type, color = Type)) +
+  geom_line(size = 2)+
+  geom_point(size = 3)+
+  xlab("비용 지불 여부") + ylab("평균") +
+  ggtitle("비용 지불과 게시물 종류에 따른 상호작용 효과") +
+  scale_color_discrete(name = "게시물 종류")+
+  facet_grid(~ group)
+
+
