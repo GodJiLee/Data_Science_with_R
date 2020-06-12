@@ -4,9 +4,7 @@ require(VIM)
 require(ggplot2)
 require(dplyr)
 
-setwd("C:\\Users\\leejiwon\\Desktop\\기초프로그래밍 13주차")
-
-# 과제[1]---------------------------------------------------------------------------------
+# Task[1]---------------------------------------------------------------------------------
 facebook1 = read.csv(file = "facebook1.csv", header = TRUE)
 facebook2 = read.csv(file = "facebook2.csv", header = TRUE)
 
@@ -32,7 +30,7 @@ ggplot(facebook_total_s_melt,
   scale_fill_discrete(name = "분류",
                       labels = c("댓글", "좋아요", "공유"))
 
-# 과제[2]---------------------------------------------------------------------------------
+# Task[2]---------------------------------------------------------------------------------
 type_vs_paid_like = facebook_total_clear %>% 
   reshape2::dcast(., Type ~ Paid, 
                   value.var = "Like",
