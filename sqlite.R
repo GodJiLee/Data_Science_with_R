@@ -5,7 +5,7 @@ conn = dbConnect(dbDriver("MySQL"),
                  user = "root",
                  password = "uosstat1",
                  host = 'localhost',
-                 dbname = "test")
+                 dbname = "test") 
 
 # 오라클
 install.packages("ROracle")
