@@ -58,7 +58,7 @@ df[, 1]
 df$name
 df$weight
 
-df[, "name"]
+df[, "name"] 
 df[, "name", drop = T]
 df[["name"]]
 #諈刺� 穈? 窶國頃
