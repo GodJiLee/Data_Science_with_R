@@ -1,0 +1,21 @@
+rent_ratio = read_excel("C:\\Users\\leejiwon\\Desktop\\rent_ratio.xlsx")
+head(rent_ratio)
+head(facebook_total_s_melt)
+
+ggplot(rent_ratio, 
+       aes(x = Region, y = Rent, fill = Date)) +
+  geom_bar(stat = "identity", position = "dodge") +
+  xlab("게시물 종류") + ylab("평균") +
+  ggtitle("2017-2020 서울지역 임대료율 변화") +
+  scale_fill_discrete(name = "Date",
+                      labels = c("2017", "2020"))
+                      
+Vacant_Ratio = read_excel("C:\\Users\\leejiwon\\Desktop\\Vacant Ratio.xlsx")
+
+ggplot(Vacant_Ratio,
+       aes(Date, Vacant_ratio, group = Region, color = Region)) +
+  geom_line(size = 2)+
+  geom_point(size = 3)+
+  xlab("분기") + ylab("공실률(%)") +
+  ggtitle("2018-2020 서울지역 오피스 및 상가 공실률 비교") +
+  scale_color_discrete(name = "지역명")
